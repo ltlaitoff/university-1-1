@@ -1,0 +1,20 @@
+.table {
+	width: 50%;
+}
+
+.table,
+.table-item {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.table-item {
+	height: 50px;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.table-item--head {
+	font-size: 2em;
+	background: #cbd5e1;
+}

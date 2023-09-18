@@ -1,20 +1,82 @@
+.main__table {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 500px;
+}
+
 .table {
-	width: 50%;
+	width: 80%;
+	height: 60%;
 }
 
 .table,
-.table-item {
+.table__item {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
 
-.table-item {
+.table__item--head {
+	font-size: 2em;
+	background: var(--slate-200);
+}
+
+.table__item {
+	position: relative;
+	z-index: 0;
+
 	height: 50px;
 	font-size: 1.5em;
 	text-align: center;
+
+	transition: 0.3s all ease-in-out;
 }
 
-.table-item--head {
-	font-size: 2em;
-	background: #cbd5e1;
+.table__item:hover {
+	background: transparent;
+	color: var(--slate-100);
+}
+
+.table__item::before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	display: inline-block;
+
+	background: transparent;
+	transition: 0.3s all ease-in-out;
+
+	z-index: -1;
+}
+
+.table__item:active {
+	background: var(--red-400) !important;
+}
+
+.table__item--0:hover:before {
+	background: var(--rose-400);
+}
+
+.table__item--1:hover:before {
+	background: var(--green-400);
+}
+
+.table__item--2:hover:before {
+	background: var(--sky-400);
+}
+
+.table__item--3:hover:before {
+	background: var(--slate-400);
+}
+
+.table__item--4:hover:before {
+	background: var(--orange-400);
+}
+
+.table__item--5:hover:before {
+	background: var(--lime-400);
 }

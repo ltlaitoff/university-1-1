@@ -1,6 +1,5 @@
-const navigationBurger = document.querySelector('#navigationBurger')
-const navigationList = document.querySelector('#navigationList')
+const navigationList = $('#navigationList')[0]
 
-navigationBurger.addEventListener('click', () => {
+$('#navigationBurger').on('click', () => {
 	navigationList.classList.toggle('navigation__list--hidden')
 })

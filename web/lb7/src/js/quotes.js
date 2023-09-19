@@ -6,5 +6,5 @@ function getRandomQuote() {
 	return quotes[index]
 }
 
-const quotePlace = document.querySelector('#quotePlace')
+const quotePlace = $('#quotePlace')[0]
 quotePlace.textContent = getRandomQuote()

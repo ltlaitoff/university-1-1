@@ -1,15 +1,12 @@
-const formElement = document.querySelector('#form')
-const formNameElement = document.querySelector('#form-name')
-const formEmailElement = document.querySelector('#form-email')
-const formTelephoneElement = document.querySelector('#form-telephone')
-const formTextElement = document.querySelector('#form-text')
-const feedbackElement = document.querySelector('#feedback')
+const formNameElement = $('#form-name')[0]
+const formEmailElement = $('#form-email')[0]
+const formTelephoneElement = $('#form-telephone')[0]
+const feedbackElement = $('#feedback')[0]
 
 const FEEDBACK_BASE_TEXT = 'Feedback'
 
-formElement.addEventListener('submit', formSubmit)
-
-formTextElement.addEventListener('input', updateTextLength)
+$('#form').on('submit', formSubmit)
+$('#form-text').on('input', updateTextLength)
 
 function formSubmit(e) {
 	e.preventDefault()

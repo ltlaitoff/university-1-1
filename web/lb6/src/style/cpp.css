@@ -142,6 +142,8 @@
 
 .footer {
 	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
 	align-items: center;
 	justify-content: center;
 
@@ -190,4 +192,8 @@
 
 .navigation__item--active {
 	background: var(--sky-100);
+}
+
+#quotePlace {
+	color: var(--slate-400);
 }

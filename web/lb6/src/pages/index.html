@@ -26,7 +26,7 @@
 			rel="stylesheet"
 			href="../style/main.css"
 		/>
-		<title>Resume - LB 2 WEB</title>
+		<title>Resume - LB 6 WEB</title>
 		<link
 			rel="preconnect"
 			href="https://fonts.googleapis.com"
@@ -259,27 +259,35 @@
 
 		<div class="other">
 			<div class="feedback">
-				<div class="sub-title">Feedback</div>
+				<div
+					class="sub-title"
+					id="feedback"
+				>
+					Feedback
+				</div>
 
 				<form
 					class="feedback__form"
-					id="home-feedback-form"
+					id="form"
 				>
 					<div class="feedback__left">
 						<input
 							type="text"
+							id="form-name"
 							placeholder="Name"
 							class="feedback__input feedback__input--name"
 						/>
 
 						<input
 							type="email"
+							id="form-email"
 							placeholder="Email"
 							class="feedback__input feedback__input--email"
 						/>
 
 						<input
 							type="tel"
+							id="form-telephone"
 							placeholder="Telephone"
 							class="feedback__input feedback__input--telephone"
 						/>
@@ -294,6 +302,7 @@
 
 					<textarea
 						class="feedback__right feedback__input feedback__input--text"
+						id="form-text"
 						placeholder="Text"
 						cols="30"
 						rows="10"
@@ -319,5 +328,10 @@
 				</a>
 			</footer>
 		</div>
+
+		<script
+			type="module"
+			src="../js/form.js"
+		></script>
 	</body>
 </html>

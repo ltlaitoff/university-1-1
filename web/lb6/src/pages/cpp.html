@@ -79,7 +79,19 @@
 
 				<div class="content">
 					<nav class="navigation">
-						<ul class="navigation__list">
+						<button
+							id="navigationBurger"
+							class="navigation__burger"
+						>
+							<div class="navigation__burger-item"></div>
+							<div class="navigation__burger-item"></div>
+							<div class="navigation__burger-item"></div>
+						</button>
+
+						<ul
+							id="navigationList"
+							class="navigation__list navigation__list--hidden"
+						>
 							<li class="navigation__item">
 								<a
 									href="./cpp-1.html"
@@ -288,5 +300,6 @@ int main() {
 			type="module"
 			src="../js/quotes.js"
 		></script>
+		<script src="../js/burger.js"></script>
 	</body>
 </html>

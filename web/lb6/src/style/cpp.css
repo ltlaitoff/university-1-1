@@ -153,7 +153,7 @@
 
 /* Navigation */
 .navigation {
-	/* padding-left: 15px; */
+	position: relative;
 
 	margin-left: -40px;
 	margin-right: -25px;
@@ -166,16 +166,29 @@
 }
 
 .navigation__list {
+	position: absolute;
+	top: 40px;
+	left: 5px;
+
+	background: var(--slate-100);
 	display: flex;
+	flex-direction: column;
+}
+
+.navigation__list--hidden {
+	display: none;
 }
 
 .navigation__item {
+	width: 100%;
 	list-style-type: none;
 }
 
 .navigation__link {
+	width: 100%;
+
 	display: inline-block;
-	padding: 12px 10px;
+	padding: 12px 15px;
 
 	text-decoration: none;
 
@@ -187,11 +200,42 @@
 }
 
 .navigation__link:hover {
-	background: var(--pink-100);
+	background: var(--pink-200);
 }
 
 .navigation__item--active {
 	background: var(--sky-100);
+}
+
+/* Burger */
+
+.navigation__burger {
+	padding: 12px 10px;
+
+	border: none;
+
+	background: transparent;
+
+	display: flex;
+	flex-direction: column;
+	row-gap: 3px;
+
+	cursor: pointer;
+}
+
+.navigation__burger:hover .navigation__burger-item {
+	background: var(--sky-500);
+}
+
+.navigation__burger-item {
+	width: 20px;
+
+	height: 2px;
+	border-radius: 10px;
+
+	background: var(--slate-500);
+
+	transition: 0.3s all ease-in-out;
 }
 
 #quotePlace {

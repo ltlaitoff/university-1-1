@@ -1,14 +1,54 @@
 .main--cpp {
 	margin: 0;
 
-	padding: 0;
+	padding: 0 !important;
 	display: flex;
 	flex-direction: row;
 	column-gap: 40px;
 	flex-wrap: nowrap;
 	line-height: 1.3em;
 
+	row-gap: 5px;
 	box-shadow: none;
+}
+
+@media screen and (max-width: 824px) {
+	.main--cpp {
+		column-gap: 20px;
+	}
+
+	.aside {
+		padding: 15px !important;
+	}
+
+	.navigation {
+		margin-left: -20px !important;
+	}
+}
+
+@media screen and (max-width: 690px) {
+	.aside {
+		width: 100%;
+		max-width: none !important;
+	}
+
+	.content {
+		padding-left: 20px !important;
+	}
+
+	.navigation__list {
+		width: 100%;
+		flex-direction: column;
+	}
+
+	.main--cpp {
+		flex-direction: column;
+	}
+
+	.navigation__link {
+		padding-left: 20px !important;
+		width: 100%;
+	}
 }
 
 .wrapper {
@@ -31,6 +71,7 @@
 }
 
 .content {
+	width: 100%;
 	padding: 25px;
 	padding-left: 0;
 
@@ -110,7 +151,7 @@
 
 /* Navigation */
 .navigation {
-	padding-left: 15px;
+	/* padding-left: 15px; */
 
 	margin-left: -40px;
 	margin-right: -25px;

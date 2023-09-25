@@ -32,7 +32,8 @@ body {
 	overflow: hidden;
 }
 
-.bg::before {
+.bg::before,
+.feedback__right::before {
 	content: '';
 	position: absolute;
 	width: 200%;
@@ -270,9 +271,18 @@ education__year-divider {
 }
 
 .feedback__right {
+	position: relative;
+	overflow: hidden;
 	width: 100%;
 	height: 139px;
-	resize: none;
+}
+
+.feedback__right::before {
+	width: 2000px;
+	height: 2000px;
+	z-index: 0;
+	top: -92%;
+	left: -87%;
 }
 
 .feedback__input {
@@ -282,6 +292,16 @@ education__year-divider {
 	border-radius: 5px;
 
 	transition: 0.1s all ease-in-out;
+}
+
+.feedback__input--text {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	background: rgba(255, 255, 255, 0.5);
+	z-index: 1;
+	resize: none;
 }
 
 .feedback__input:hover {

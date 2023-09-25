@@ -11,21 +11,28 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-:root {
-	padding: 1em;
-	height: 100%;
-}
-
 body {
-	height: 100%;
-	overflow: hidden;
+	min-height: 100vh;
+	padding: 1em;
+
 	position: relative;
 	background: var(--cyan-100);
 
 	color: var(--slate-500);
 }
 
-body::before {
+.bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -999999;
+
+	overflow: hidden;
+}
+
+.bg::before {
 	content: '';
 	position: absolute;
 	width: 200%;
@@ -33,6 +40,8 @@ body::before {
 	top: -66%;
 	left: -54%;
 	z-index: -1;
+
+	background-size: cover;
 
 	background-image: url('../assets/icons/headphones.svg'),
 		linear-gradient(var(--cyan-100), var(--sky-200));

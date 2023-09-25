@@ -50,6 +50,20 @@
 		/>
 	</head>
 	<body class="body">
+		<div
+			id="drag"
+			class="content__brief"
+		>
+			<h2 class="sub-title">Скорочена довідка</h2>
+			<strong class="highlight">C++</strong>
+			- об'єктно-орієнтована мова програмування, розроблена в 1979 році Бьорном
+			Страуструпом. Вона поєднує в собі можливості
+			<strong class="highlight">C</strong>
+			і
+			<strong class="highlight">C++</strong>
+			, дозволяючи працювати з високорівневими та низькорівневими конструкціями.
+		</div>
+
 		<div class="bg"></div>
 		<h1 class="sr-only">C++</h1>
 
@@ -63,58 +77,44 @@
 				</a>
 			</header>
 			<main class="main main--cpp">
-				<aside class="aside">
-					<div class="content__brief">
-						<h2 class="sub-title">Скорочена довідка</h2>
-						<strong class="highlight">C++</strong>
-						- об'єктно-орієнтована мова програмування, розроблена в 1979 році
-						Бьорном Страуструпом. Вона поєднує в собі можливості
-						<strong class="highlight">C</strong>
-						і
-						<strong class="highlight">C++</strong>
-						, дозволяючи працювати з високорівневими та низькорівневими
-						конструкціями.
-					</div>
-				</aside>
+				<nav class="navigation">
+					<ul class="navigation__list">
+						<li class="navigation__item">
+							<a
+								href="./cpp-1.html"
+								class="navigation__link"
+							>
+								Features
+							</a>
+						</li>
+						<li class="navigation__item">
+							<a
+								href="./cpp-2.html"
+								class="navigation__link"
+							>
+								Example
+							</a>
+						</li>
+						<li class="navigation__item">
+							<a
+								href="./cpp-3.html"
+								class="navigation__link"
+							>
+								Development
+							</a>
+						</li>
+						<li class="navigation__item">
+							<a
+								href="./cpp-4.html"
+								class="navigation__link"
+							>
+								Pros and cons
+							</a>
+						</li>
+					</ul>
+				</nav>
 
 				<div class="content">
-					<nav class="navigation">
-						<ul class="navigation__list">
-							<li class="navigation__item">
-								<a
-									href="./cpp-1.html"
-									class="navigation__link"
-								>
-									Features
-								</a>
-							</li>
-							<li class="navigation__item">
-								<a
-									href="./cpp-2.html"
-									class="navigation__link"
-								>
-									Example
-								</a>
-							</li>
-							<li class="navigation__item">
-								<a
-									href="./cpp-3.html"
-									class="navigation__link"
-								>
-									Development
-								</a>
-							</li>
-							<li class="navigation__item">
-								<a
-									href="./cpp-4.html"
-									class="navigation__link"
-								>
-									Pros and cons
-								</a>
-							</li>
-						</ul>
-					</nav>
-
 					<div class="content__features">
 						<h2 class="sub-title">Особливості</h2>
 						<ul class="list">
@@ -281,5 +281,7 @@ int main() {
 
 		<script src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
 		<script src="https://unpkg.com/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+		<script src="../js/drag.js"></script>
 	</body>
 </html>

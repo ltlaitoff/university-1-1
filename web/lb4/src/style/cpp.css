@@ -1,11 +1,8 @@
 .main--cpp {
 	margin: 0;
-
 	padding: 0;
-	display: flex;
-	flex-direction: row;
-	column-gap: 40px;
-	flex-wrap: nowrap;
+
+	gap: 0;
 	line-height: 1.3em;
 
 	box-shadow: none;
@@ -21,22 +18,28 @@
 	background: white;
 }
 
-.aside {
-	padding: 25px;
-
-	max-width: 240px;
-	background: var(--slate-100);
-
-	box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.02);
-}
-
 .content {
 	padding: 25px;
-	padding-left: 0;
 
 	display: flex;
 	flex-direction: column;
 	row-gap: 15px;
+}
+
+.content__brief {
+	padding: 10px;
+	position: absolute;
+	left: 1000px;
+	top: 350px;
+	max-width: 240px;
+	cursor: move;
+	background: var(--slate-50);
+
+	border-radius: 10px;
+
+	z-index: 10;
+
+	box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.02);
 }
 
 .highlight {
@@ -112,9 +115,7 @@
 .navigation {
 	padding-left: 15px;
 
-	margin-left: -40px;
-	margin-right: -25px;
-	margin-top: -25px;
+	/* margin: -25px -25px 0 -25px; */
 
 	display: flex;
 	align-items: center;

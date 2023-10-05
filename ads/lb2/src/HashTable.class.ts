@@ -84,11 +84,6 @@ class List {
 }
 
 class HashTable {
-	constructor(typeOfFunction: 'task' | 'my' = 'task') {
-		this.typeOfFunction = typeOfFunction
-	}
-
-	private typeOfFunction = 'task'
 	private readonly sizes: number[] = [
 		5, 11, 23, 47, 97, 193, 389, 769, 1543, 3072, 3079, 12289, 24593, 49157,
 		98317, 196613, 393241, 786433, 1572869, 3145739, 6291469, 12582917,
@@ -103,15 +98,10 @@ class HashTable {
 
 	addOrUpdate(key: KeyType, value: unknown) {
 		if (this.checkMemory()) {
-			console.time('addMemory')
 			this.addMemory()
-			console.timeEnd('addMemory')
 		}
 
 		const index = this.getIndex(key)
-
-		// if (type === "task") {}
-		console.log('%c⧭', 'color: #ffa640', this.typeOfFunction, index, key)
 
 		if (this.values[index] == null) {
 			this.values[index] = new List()
@@ -149,30 +139,19 @@ class HashTable {
 	}
 
 	show() {
-		// return this.values
 		return this.values
 			.map((item, index) => {
-				if (item) return item.getShow()
+				if (item) return { index: index, value: item.getShow().join(' => ') }
 			})
 			.filter(item => item != undefined)
-		// .reduce((acc, item) => {
-		// 	return [...acc, ...item]
-		// }, [])
-
-		// return this.values
-		// return ''
 	}
 
 	private getHash(key: KeyType): number {
 		const value = typeof key === 'number' ? key : this.stringToNumber(key)
 
-		if (this.typeOfFunction === 'my') {
-			return value
-		}
-
-		const w = 14
+		const w = 10
 		const A = Math.sqrt(5) / 2 ** w
-		const M = 2 ** 6
+		const M = 2 ** 16
 
 		const resultOfMultiple = value * A
 
@@ -211,7 +190,6 @@ class HashTable {
 			if (!oldValues[i]) continue
 
 			let node = oldValues[i].__getInfoWithRemove()
-			console.log('%c⧭ node main: ', 'color: #00b300', node)
 
 			while (node != null) {
 				this.addOrUpdate(node[0], node[1])
@@ -225,102 +203,5 @@ class HashTable {
 		}
 	}
 }
-
-/*
-Створити геш-таблицю, що використовує метод ланцюжків
-для розв’язання колізій та геш-функцію множення. Геш-таблицю
-заповнити на основі виділення інформації з текстового файлу, в якому
-містяться прізвища, ім’я і по батькові співробітників фірми та займані
-ними посади. Визначити посаду заданого співробітника.
-*/
-
-const DATA = [
-	['Loy Graham Zboncak', 'Directives'],
-	['Roy Breitenberg Runte', 'Accountability'],
-	['Erika Emard Feest', 'Security'],
-	['Vance Flatley Thiel', 'Research'],
-	['Mallory Hoppe O`Hara', 'Applications'],
-	['Dulce Douglas Boyer', 'Interactions'],
-	['Dedrick Jerde Kozey', 'Accounts'],
-	['Hudson Langosh Mayert', 'Applications'],
-	['Georgianna Bergstrom VonRueden', 'Solutions'],
-	['Marjorie Rolfson Bashirian', 'Integration'],
-	['Mitchell O`Keefe Shanahan', 'Branding'],
-	['Filiberto Gottlieb Marquardt', 'Accountability'],
-	['Murphy Cassin Franey', 'Configuration'],
-	['Javier Kilback Rodriguez', 'Branding'],
-	['Kayley Powlowski Kuphal', 'Assurance'],
-	['Liliana Johnston Ebert', 'Metrics'],
-	['Everette Little Cartwright', 'Accounts'],
-	['Otilia Fadel Spinka', 'Implementation'],
-	['Watson Schuppe Lowe', 'Web'],
-	['Duane Emmerich Rohan', 'Paradigm'],
-	['Linwood Huel VonRueden', 'Marketing'],
-	['Toni Johns Wiegand', 'Accounts'],
-	['Taylor Kreiger Kihn', 'Functionality'],
-	['Coby Sauer Littel', 'Division']
-]
-
-const th = new HashTable()
-const thMy = new HashTable('my')
-
-const start = []
-DATA.map(([name, job], index) => {
-	// console.log(index, [name, job])
-	start.push(`${index} - ${name}`)
-	th.addOrUpdate(`${index} - ${name}`, job)
-	// thMy.addOrUpdate(`${index} - ${name}`, job)
-})
-
-console.log('start', start)
-
-// th.addOrUpdate('test', 'test')
-// console.log('test', th.show())
-
-// th.addOrUpdate('asdftest', 'asdftest')
-// console.log('asdftest', th.show())
-
-// th.addOrUpdate('asdftest', 'h45578')
-// console.log('asdftest', th.show())
-
-// th.addOrUpdate('56', '56')
-// console.log('56', th.show())
-
-// th.remove('56')
-// console.log('56 remove', th.show())
-
-// th.addOrUpdate('sdf', 'sdf')
-
-// console.log('sdf', th.show())
-
-// th.addOrUpdate(6, '6')
-// console.log(6, th.show())
-
-// th.addOrUpdate(8, 'b')
-console.log('task')
-console.log(
-	th
-		.show()
-		.flat(Infinity)
-		.sort((a: string, b: string) => {
-			const aNumber = Number(a.split(' - ')[0])
-			const bNumber = Number(b.split(' - ')[0])
-
-			return aNumber - bNumber
-		})
-)
-
-console.log('my')
-console.log(
-	thMy
-		.show()
-		.flat(Infinity)
-		.sort((a: string, b: string) => {
-			const aNumber = Number(a.split(' - ')[0])
-			const bNumber = Number(b.split(' - ')[0])
-
-			return aNumber - bNumber
-		})
-)
 
 export default HashTable

@@ -1,6 +1,7 @@
 import AVLTree from './AVLTree.class'
 import HashTable from './HashTable.class'
 import { logTree } from './helper/logTree'
+import * as fs from 'fs'
 
 console.log('Var 8 => Task 1 В)')
 /*
@@ -11,31 +12,7 @@ console.log('Var 8 => Task 1 В)')
 ними посади. Визначити посаду заданого співробітника.
 */
 
-const hashData = [
-	['Loy Graham Zboncak', 'Directives'],
-	['Roy Breitenberg Runte', 'Accountability'],
-	['Erika Emard Feest', 'Security'],
-	['Vance Flatley Thiel', 'Research'],
-	['Mallory Hoppe O`Hara', 'Applications'],
-	['Dulce Douglas Boyer', 'Interactions'],
-	['Dedrick Jerde Kozey', 'Accounts'],
-	['Hudson Langosh Mayert', 'Applications'],
-	['Georgianna Bergstrom VonRueden', 'Solutions'],
-	['Marjorie Rolfson Bashirian', 'Integration'],
-	['Mitchell O`Keefe Shanahan', 'Branding'],
-	['Filiberto Gottlieb Marquardt', 'Accountability'],
-	['Murphy Cassin Franey', 'Configuration'],
-	['Javier Kilback Rodriguez', 'Branding'],
-	['Kayley Powlowski Kuphal', 'Assurance'],
-	['Liliana Johnston Ebert', 'Metrics'],
-	['Everette Little Cartwright', 'Accounts'],
-	['Otilia Fadel Spinka', 'Implementation'],
-	['Watson Schuppe Lowe', 'Web'],
-	['Duane Emmerich Rohan', 'Paradigm'],
-	['Linwood Huel VonRueden', 'Marketing'],
-	['Toni Johns Wiegand', 'Accounts'],
-	['Taylor Kreiger Kihn', 'Functionality']
-]
+const hashData = JSON.parse(fs.readFileSync('./src/data/task1.json', 'utf8'))
 
 const hashTable = new HashTable()
 

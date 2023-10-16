@@ -14,11 +14,19 @@ import * as chalk from 'chalk'
 
 class BringWater {
 	barrelСapacity = 0
-	buckets: number[] = []
+	private _buckets: number[] = []
 
 	constructor(barrelСapacity: number, buckets: number[]) {
 		this.barrelСapacity = barrelСapacity
-		this.buckets = buckets.sort((a, b) => a - b)
+		this.buckets = buckets
+	}
+
+	get buckets() {
+		return this._buckets
+	}
+
+	set buckets(newBuckets) {
+		this._buckets = newBuckets.sort((a, b) => a - b)
 	}
 
 	get result() {

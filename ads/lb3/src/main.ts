@@ -5,8 +5,10 @@ import * as chalk from 'chalk'
 const { stdin: input, stdout: output } = nodeProcess
 
 import { BringWater } from './water'
+import { EncodeAndDecode } from './encodeAndDecode'
 
 const bringWater = new BringWater(0, [])
+const encodeAndDecode = new EncodeAndDecode()
 
 /*
 	Menu 1:
@@ -21,8 +23,9 @@ const bringWater = new BringWater(0, [])
 	(0) - Go back
 
 	File menu:
+	(1) - Encode from file
+	(2) - Decode from files
 	(0) - Go back
-
 */
 
 const rl = readline.createInterface({ input, output })
@@ -68,59 +71,55 @@ function menu() {
 	})
 }
 
-function individualSetBarrelCapacityInput(): Promise<void> {
+function consoleQuestion(
+	questionString: string,
+	callback: (answer: string) => void
+): Promise<void> {
 	return new Promise(resolve => {
-		const menuString = `\nInput new barrel capacity(current = ${bringWater.barrelСapacity}): `
-
-		rl.question(menuString, async answer => {
+		rl.question(questionString, async answer => {
 			console.clear()
 
 			try {
-				const number = Number(answer)
-
-				if (number < 0) {
-					throw new Error('Not valid input')
-				}
-
-				bringWater.barrelСapacity = number
+				callback(answer)
 				resolve()
 				return
 			} catch {
 				console.log(chalk.red('Not valid input! Try again'))
 			}
 
-			await individualSetBarrelCapacityInput()
+			await consoleQuestion(questionString, callback)
 			resolve()
 		})
 	})
 }
 
+function individualSetBarrelCapacityInput(): Promise<void> {
+	const question = `\nInput new barrel capacity(current = ${bringWater.barrelСapacity}): `
+
+	return consoleQuestion(question, (answer: string) => {
+		const number = Number(answer)
+
+		if (number < 0) {
+			throw new Error('Not valid input')
+		}
+
+		bringWater.barrelСapacity = number
+	})
+}
+
 function individualSetBuckets(): Promise<void> {
-	return new Promise(resolve => {
-		const menuString = `\nInput new buckets sizes in line with "," as divider (current = [${bringWater.buckets.join(
-			','
-		)}]): `
+	const question = `\nInput new buckets sizes in line with "," as divider (current = [${bringWater.buckets.join(
+		','
+	)}]): `
 
-		rl.question(menuString, async answer => {
-			console.clear()
+	return consoleQuestion(question, (answer: string) => {
+		const buckets = answer.split(',').map(Number)
 
-			try {
-				const buckets = answer.split(',').map(Number)
-
-				buckets.forEach(bucket => {
-					if (isNaN(bucket)) throw new Error()
-				})
-
-				bringWater.buckets = structuredClone(buckets)
-				resolve()
-				return
-			} catch {
-				console.log(chalk.red('Not valid input! Try again'))
-			}
-
-			await individualSetBuckets()
-			resolve()
+		buckets.forEach(bucket => {
+			if (isNaN(bucket)) throw new Error()
 		})
+
+		bringWater.buckets = structuredClone(buckets)
 	})
 }
 
@@ -180,21 +179,127 @@ function individualMenu() {
 
 function fileMenu() {
 	const menuString =
-		`\nFile menu:\n` + `(0) - Close program\n` + `\nInput(default - 0): `
+		`\nFile menu:\n` +
+		`(1) - Encode file\n` +
+		`(2) - Decode files\n` +
+		`(0) - Close program\n` +
+		`\nInput(default - 0): `
 
-	rl.question(menuString, answer => {
+	rl.question(menuString, async answer => {
 		console.clear()
 
 		try {
 			const number = Number(answer)
 
-			if (number === 0) {
-				menu()
-				return
-			}
+			switch (number) {
+				case 1: {
+					let filePathForEncode = ''
 
-			throw new Error('Not valid input')
-		} catch {
+					await consoleQuestion(
+						`\nInput file location (default = "/files/textForEncode"): `,
+						(answer: string) => {
+							if (answer.trim() === '') {
+								filePathForEncode = './files/textForEncode'
+								return
+							}
+
+							filePathForEncode = answer
+						}
+					)
+
+					let filePathBinary = ''
+					await consoleQuestion(
+						`\nInput output file path (default = "/files/binary"): `,
+						(answer: string) => {
+							if (answer.trim() === '') {
+								filePathBinary = './files/binary'
+								return
+							}
+
+							filePathBinary = answer
+						}
+					)
+
+					let filePathTree = ''
+					await consoleQuestion(
+						`\nInput tree file path (default = "/files/tree.json"): `,
+						(answer: string) => {
+							if (answer.trim() === '') {
+								filePathTree = './files/tree.json'
+								return
+							}
+
+							filePathTree = answer
+						}
+					)
+
+					encodeAndDecode.encodeFromFileToFiles(
+						filePathForEncode,
+						filePathBinary,
+						filePathTree
+					)
+					break
+				}
+
+				case 2: {
+					let filePathForDecode = ''
+
+					await consoleQuestion(
+						`\nInput file location (default = "/files/binary"): `,
+						(answer: string) => {
+							if (answer.trim() === '') {
+								filePathForDecode = './files/binary'
+								return
+							}
+
+							filePathForDecode = answer
+						}
+					)
+
+					let filePathTree = ''
+					await consoleQuestion(
+						`\nInput tree file path (default = "/files/tree.json"): `,
+						(answer: string) => {
+							if (answer.trim() === '') {
+								filePathTree = './files/tree.json'
+								return
+							}
+
+							filePathTree = answer
+						}
+					)
+
+					let fileForOutput = ''
+					await consoleQuestion(
+						`\nInput output file path (default = "/files/decodeOutput"): `,
+						(answer: string) => {
+							if (answer.trim() === '') {
+								fileForOutput = './files/decodeOutput'
+								return
+							}
+
+							fileForOutput = answer
+						}
+					)
+
+					encodeAndDecode.decodeFromFilesToFile(
+						filePathForDecode,
+						filePathTree,
+						fileForOutput
+					)
+					break
+				}
+
+				case 0: {
+					menu()
+					return
+				}
+
+				default:
+					throw new Error('Not valid input')
+			}
+		} catch (e) {
+			console.log(e)
 			console.log(chalk.red('Not valid input! Try again'))
 		}
 
@@ -202,4 +307,5 @@ function fileMenu() {
 	})
 }
 
+console.clear()
 menu()

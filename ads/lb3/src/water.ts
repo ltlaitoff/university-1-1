@@ -42,7 +42,7 @@ class BringWater {
 			for (let i = 0; i < this.buckets.length; i++) {
 				const bucket = this.buckets[i]
 
-				if (notFilledCapacity < bucket || i === this.buckets.length - 1) {
+				if (notFilledCapacity <= bucket || i === this.buckets.length - 1) {
 					if (!(bucket in usedBuckets)) {
 						usedBuckets[bucket] = 0
 					}

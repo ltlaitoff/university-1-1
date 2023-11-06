@@ -1,8 +1,10 @@
 import * as chalk from 'chalk'
 import { FirstTask } from './FirstTask.class'
+import { SecondTask } from './SecondTask.class'
 
-console.log(chalk.yellow('Lab 4 | Algoritms'))
+console.log(chalk.yellow('Lab 4 | Algoritms\n'))
 
+console.log(chalk.bgRed('Lab 4 | First task\n'))
 const firstTask = new FirstTask()
 
 const firstTaskCheckData = [
@@ -49,8 +51,10 @@ const firstTaskCheckData = [
 ]
 
 const testData = []
+
 firstTaskCheckData.forEach(test => {
 	const actual = firstTask.resolve(test.input)
+
 	testData.push({
 		pass: JSON.stringify(test.expectedOutput) === JSON.stringify(actual),
 		input: JSON.stringify(test.input),
@@ -61,3 +65,51 @@ firstTaskCheckData.forEach(test => {
 })
 
 console.table(testData)
+
+console.log(chalk.bgBlue('\nLab 4 | Second task\n'))
+const secondTask = new SecondTask()
+
+const dataForSecond = [
+	{
+		matrix: [
+			[1, 0, 0],
+			[0, 1, 0],
+			[0, 0, 1]
+		],
+		count: 6
+	},
+	{
+		matrix: [
+			[1, 1, 0],
+			[1, 0, 1],
+			[0, 1, 1]
+		],
+		count: 6
+	},
+	{
+		matrix: [
+			[1, 1, 1],
+			[1, 1, 1],
+			[1, 1, 1]
+		],
+		count: 6
+	},
+	{
+		matrix: [
+			[1, 1, 1],
+			[1, 1, 1],
+			[1, 1, 1]
+		],
+		count: 7
+	}
+]
+
+dataForSecond.forEach(data => {
+	const result = secondTask.resolve(data.matrix, data.count)
+
+	console.log(
+		`On matrix = ${JSON.stringify(data.matrix)}, count = ${
+			data.count
+		} result = ${result.length}\n${JSON.stringify(result)}`
+	)
+})

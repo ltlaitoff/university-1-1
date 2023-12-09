@@ -40,23 +40,36 @@
 			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+			crossorigin="anonymous"
+		/>
 	</head>
 	<body class="body">
 		<div class="bg"></div>
+
 		<main class="main">
-			<div class="main__top">
-				<div class="main__top-left">
-					<div class="photo">
-						<img
-							src="../assets/images/my-photo.jpg"
-							alt="My photo"
-							class="photo__img"
-						/>
-					</div>
+			<div class="row d-flex column-gap-4">
+				<div class="col-md-4 d-flex flex-column">
+					<section>
+						<h2 class="visually-hidden">Info about be</h2>
 
-					<h1 class="title">Shchedrovskyi Ivan</h1>
+						<div class="photo">
+							<img
+								src="../assets/images/my-photo.jpg"
+								alt="My photo"
+								class="photo__img"
+							/>
+						</div>
 
-					<div class="contact">
+						<h1 class="title">Shchedrovskyi Ivan</h1>
+					</section>
+
+					<section class="contact">
+						<h2 class="visually-hidden">Contacts</h2>
+
 						<div class="contact__info">
 							<a
 								href="mailto:ltlaitoff@gmail.com"
@@ -113,215 +126,213 @@
 								/>
 							</a>
 						</div>
-					</div>
+					</section>
 
-					<div class="work">
-						<div class="sub-title">Work experience</div>
-						<div class="work__experience">undefined</div>
-					</div>
+					<section class="work">
+						<h2 class="h3">Work experience</h2>
+						<div class="text-light-emphasis">undefined</div>
+					</section>
 				</div>
 
-				<div class="main__top-right">
-					<div class="skills">
-						<h2 class="sub-title">Skills</h2>
+				<div class="col d-flex flex-column row-gap-3">
+					<section class="skills">
+						<h2 class="h3">Skills</h2>
 
-						<div class="skills__list">
-							<div class="skills__item skills__item--yellow">JavaScript</div>
-							<div class="skills__item skills__item--blue">TypeScript</div>
-							<div class="skills__item skills__item--blue-dark">nx</div>
-							<d class="skills__item skills__item--blue-light">React</d>
-							<div class="skills__item skills__item--green">Vue</div>
-							<div class="skills__item skills__item--red">Angular</div>
-							<div class="skills__item skills__item--green">Node</div>
-							<div class="skills__item">NestJS</div>
-							<div class="skills__item">Express</div>
-							<div class="skills__item">NoSQL</div>
-							<div class="skills__item skills__item--blue">MongoDB</div>
-							<div class="skills__item skills__item--pink">Jest</div>
-							<div class="skills__item">webpack</div>
-							<div class="skills__item">vite</div>
-							<div class="skills__item">react-router</div>
-							<div class="skills__item">redux</div>
-							<div class="skills__item">redux-toolkit</div>
-							<div class="skills__item">redux-saga,</div>
-							<div class="skills__item">vue-router</div>
-							<div class="skills__item">vuex</div>
-							<div class="skills__item">pinia</div>
-							<div class="skills__item">rxjs</div>
-							<div class="skills__item">ngrx-store</div>
-							<div class="skills__item">ngrx-effects</div>
-							<div class="skills__item">ngx-lottie</div>
-							<div class="skills__item">lootie-web</div>
-							<div class="skills__item">vitest</div>
-							<div class="skills__item">react-testing-library</div>
-							<div class="skills__item">vue-test-utils</div>
-							<div class="skills__item">mongoose</div>
-							<div class="skills__item">eslint</div>
-							<div class="skills__item">chart.js</div>
-							<div class="skills__item">Git</div>
-							<div class="skills__item">Storybook</div>
-							<div class="skills__item">axios</div>
-							<div class="skills__item">Google Identity</div>
+						<div class="d-flex flex-wrap column-gap-2 row-gap-1">
+							<div class="text-warning">JavaScript</div>
+							<div class="text-primary">TypeScript</div>
+							<div class="text-dark-emphasis">nx</div>
+							<d class="text-primary">React</d>
+							<div class="text-success">Vue</div>
+							<div class="text-danger">Angular</div>
+							<div class="text-success">Node</div>
+							<div>NestJS</div>
+							<div>Express</div>
+							<div>NoSQL</div>
+							<div class="text-primary">MongoDB</div>
+							<div class="text-danger">Jest</div>
+							<div>webpack</div>
+							<div>vite</div>
+							<div>react-router</div>
+							<div>redux</div>
+							<div>redux-toolkit</div>
+							<div>redux-saga</div>
+							<div>vue-router</div>
+							<div>vuex</div>
+							<div>pinia</div>
+							<div>rxjs</div>
+							<div>ngrx-store</div>
+							<div>ngrx-effects</div>
+							<div>ngx-lottie</div>
+							<div>lootie-web</div>
+							<div>vitest</div>
+							<div>react-testing-library</div>
+							<div>vue-test-utils</div>
+							<div>mongoose</div>
+							<div>eslint</div>
+							<div>chart.js</div>
+							<div>Git</div>
+							<div>Storybook</div>
+							<div>axios</div>
+							<div>Google Identity</div>
 						</div>
-					</div>
+					</section>
 
-					<div class="education">
-						<h2 class="sub-title">Education</h2>
+					<section class="education">
+						<h2 class="h3">Education</h2>
 
-						<div class="education__list">
-							<div class="education__item">
-								<div class="education__wrapper education__wrapper--top">
-									<h3 class="education__name">
+						<div class="d-flex flex-column row-gap-4">
+							<article>
+								<div class="d-flex column-gap-4 align-items-center">
+									<h3 class="h5">
 										National University "Zaporizhzhya Polytechnic"
 									</h3>
 
 									<div class="education__year">
-										<div class="education__year-start">09/2023</div>
-										<div class="education__year-divider">-</div>
-										<div class="education__year-end education__year--green">
-											current
-										</div>
+										<div class="text-light-emphasis">09/2023</div>
+										<div class="text-light-emphasis">-</div>
+										<div class="fw-medium text-success">current</div>
 									</div>
 								</div>
 
-								<div class="education__wrapper">
-									<div class="education__level education__level--bachelor">
-										Bachelor of Science
-									</div>
-									<div class="education__city">Zaporizhzhya</div>
+								<div class="d-flex column-gap-4 align-items-center">
+									<div class="text-danger">Bachelor of Science</div>
+									<div class="text-light-emphasis">Zaporizhzhya</div>
 								</div>
-							</div>
+							</article>
 
-							<div class="education__item">
-								<div class="education__wrapper education__wrapper--top">
-									<h3 class="education__name">
+							<article>
+								<div class="d-flex column-gap-4 align-items-center">
+									<h3 class="h5">
 										Zaporizhzhya Electrotechnical Vocational College
 									</h3>
 									<div class="education__year">
-										<div class="education__year-start">09/2019</div>
-										<div class="education__year-divider">-</div>
-										<div class="education__year-end">06/2023</div>
+										<div class="text-light-emphasis">09/2019</div>
+										<div class="text-light-emphasis">-</div>
+										<div class="text-light-emphasis">06/2023</div>
 									</div>
 								</div>
 
-								<div class="education__wrapper">
-									<div class="education__level education__level--young">
-										Young specialist
-									</div>
-									<div class="education__city">Zaporizhzhya</div>
+								<div class="d-flex column-gap-4 align-items-center">
+									<div class="text-primary">Young specialist</div>
+									<div class="text-light-emphasis">Zaporizhzhya</div>
 								</div>
-							</div>
+							</article>
 						</div>
-					</div>
+					</section>
 
-					<div class="contributions">
-						<h2 class="sub-title">Contribution</h2>
+					<section class="contributions">
+						<h2 class="h3">Contribution</h2>
 
-						<div class="contributions__list">
-							<div class="contributions__item">
-								<div class="contributions__name">uk.javascript.info</div>
+						<div class="d-flex flex-column row-gap-2">
+							<article class="row">
+								<div class="col-md-3 text-light-emphasis">
+									uk.javascript.info
+								</div>
 								<a
+									class="col-md-1 link"
 									href="https://github.com/javascript-tutorial/uk.javascript.info/pulls?q=author%3Altlaitoff+"
 									alt="uk.javascript.info"
-									class="link"
 								>
 									link
 								</a>
-								<div class="contributions__content">
-									<div class="contributions__opened">2</div>
+								<div class="col d-flex column-gap-2">
+									<div class="text-success">2</div>
 									open and
-									<div class="contributions__closed">11</div>
+									<div class="text-danger">11</div>
 									closed pull requests
 								</div>
-							</div>
+							</article>
 
-							<div class="contributions__item">
-								<div class="contributions__name">progit2-uk</div>
+							<article class="row">
+								<div class="col-md-3 text-light-emphasis">progit2-uk</div>
 								<a
+									class="col-md-1 link"
 									href="https://github.com/progit/progit2-uk/pulls?q=author%3Altlaitoff"
 									alt="uk.javascript.info"
-									class="link"
 								>
 									link
 								</a>
-								<div class="contributions__content">
-									<div class="contributions__opened">1</div>
+								<div class="col d-flex column-gap-2">
+									<div class="text-success">1</div>
 									open and
-									<div class="contributions__closed">0</div>
+									<div class="text-danger">0</div>
 									closed pull requests
 								</div>
-							</div>
+							</article>
 						</div>
-					</div>
+					</section>
 				</div>
 			</div>
 		</main>
 
 		<div class="other">
-			<div class="feedback">
-				<div
-					class="sub-title"
+			<section>
+				<h2
+					class="h3"
 					id="feedback"
 				>
 					Feedback
-				</div>
+				</h2>
 
 				<form
-					class="feedback__form"
+					class="d-flex gap-2"
 					id="form"
 				>
-					<div class="feedback__left">
+					<div class="d-flex flex-column row-gap-2">
 						<input
 							type="text"
 							id="form-name"
 							placeholder="Name"
-							class="feedback__input feedback__input--name"
+							class="form-control"
 						/>
 
 						<input
 							type="email"
 							id="form-email"
 							placeholder="Email"
-							class="feedback__input feedback__input--email"
+							class="form-control"
 						/>
 
 						<input
 							type="tel"
 							id="form-telephone"
 							placeholder="Telephone"
-							class="feedback__input feedback__input--telephone"
+							class="form-control"
 						/>
 
 						<button
 							type="submit"
-							class="feedback__button"
+							class="btn btn-outline-success"
 						>
 							Submit
 						</button>
 					</div>
 
 					<textarea
-						class="feedback__right feedback__input feedback__input--text"
+						class="feedback__right form-control"
 						id="form-text"
 						placeholder="Text"
 						cols="30"
 						rows="10"
 					></textarea>
 				</form>
-			</div>
+			</section>
 
 			<hr class="line-divider" />
 
 			<footer>
+				<h2 class="visually-hidden">Links to other pages</h2>
+
 				<a
-					class="link"
+					class="link-primary"
 					href="./table.html"
 				>
 					Table page
 				</a>
 
 				<a
-					class="link"
+					class="link-primary"
 					href="./cpp.html"
 				>
 					Cpp
@@ -337,6 +348,12 @@
 		<script
 			type="module"
 			src="../js/form.js"
+		></script>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			crossorigin="anonymous"
 		></script>
 	</body>
 </html>

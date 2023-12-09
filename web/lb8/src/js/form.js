@@ -12,15 +12,27 @@ function formSubmit(e) {
 	e.preventDefault()
 
 	if (isNameError(formNameElement.value)) {
-		return alert('Error in name')
+		formNameElement.classList.add('is-invalid')
+		formNameElement.classList.remove('is-valid')
+	} else {
+		formNameElement.classList.add('is-valid')
+		formNameElement.classList.remove('is-invalid')
 	}
 
 	if (isEmailError(formEmailElement.value)) {
-		return alert('Error in email')
+		formEmailElement.classList.add('is-invalid')
+		formEmailElement.classList.remove('is-valid')
+	} else {
+		formEmailElement.classList.add('is-valid')
+		formEmailElement.classList.remove('is-invalid')
 	}
 
 	if (isPhoneError(formTelephoneElement.value)) {
-		return alert('Error in telephone')
+		formTelephoneElement.classList.add('is-invalid')
+		formTelephoneElement.classList.remove('is-valid')
+	} else {
+		formTelephoneElement.classList.add('is-valid')
+		formTelephoneElement.classList.remove('is-invalid')
 	}
 }
 

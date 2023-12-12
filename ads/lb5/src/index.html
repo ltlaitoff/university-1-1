@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/vite.svg"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Vite + TS</title>
+	</head>
+	<body>
+		<div id="app">
+			<section
+				class="panel"
+				id="panel"
+			>
+				<form
+					id="form"
+					class="panel__form"
+				>
+					<h2 class="panel__form-heading">BFS</h2>
+
+					<label
+						class="panel__form-label"
+						for="panel__form-label--from"
+					>
+						<div>From:</div>
+						<input
+							class="panel__form-input panel__form-input--from"
+							id="panel__form--from"
+							type="text"
+						/>
+					</label>
+
+					<label
+						class="panel__form-label"
+						for="panel__form-label--to"
+					>
+						<div>To:</div>
+						<input
+							class="panel__form-input panel__form-input--to"
+							id="panel__form--to"
+							type="text"
+						/>
+					</label>
+
+					<button class="panel__form-button">Run</button>
+				</form>
+			</section>
+
+			<section class="menu">
+				<nav
+					class="menu__nav"
+					id="main-menu"
+				>
+					<ul class="menu__list">
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="dfs"
+							>
+								DFS
+							</button>
+						</li>
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="bfs"
+							>
+								BFS
+							</button>
+						</li>
+						<!-- <li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="find-one-path"
+							>
+								FOP
+							</button>
+						</li>
+
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="find-all-paths"
+							>
+								FAP
+							</button>
+						</li> -->
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="mode"
+							>
+								d
+							</button>
+						</li>
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="weight"
+							>
+								nw
+							</button>
+						</li>
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="reset"
+							>
+								R
+							</button>
+						</li>
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="lb5first"
+							>
+								1LB5
+							</button>
+						</li>
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="lb5second"
+							>
+								2LB5
+							</button>
+						</li>
+
+						<li class="menu__item">
+							<button
+								class="menu__link"
+								data-id="lb5third"
+							>
+								3LB5
+							</button>
+						</li>
+					</ul>
+				</nav>
+			</section>
+			<div id="content"></div>
+		</div>
+
+		<script
+			type="module"
+			src="./main.ts"
+		></script>
+	</body>
+</html>

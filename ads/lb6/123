@@ -1,0 +1,148 @@
+class Graph {
+	// instance variables
+	constructor(v) {
+		// v is the number of nodes/vertices
+		this.time = 0
+		this.traversal_array = []
+		this.v = v
+
+		// e is the number of edge (randomly chosen between 9 to 45)
+		this.e = Math.floor(Math.random() * (45 - 9 + 1)) + 9
+
+		// adj. list for graph
+		this.graph_list = Array.from({ length: v }, () => [])
+
+		// adj. matrix for graph
+		this.graph_matrix = Array.from({ length: v }, () =>
+			Array.from({ length: v }, () => 0)
+		)
+	}
+
+	// function to create random graph
+	create_random_graph() {
+		// add edges upto e
+		for (let i = 0; i < this.e; i++) {
+			// choose src and dest of each edge randomly
+			// choose src and dest of each edge randomly
+			let src = Math.floor(Math.random() * this.v)
+			let dest = Math.floor(Math.random() * this.v)
+
+			// re-choose if src and dest are same or src and dest already has an edge
+			while (src === dest || this.graph_matrix[src][dest] === 1) {
+				src = Math.floor(Math.random() * this.v)
+				dest = Math.floor(Math.random() * this.v)
+			}
+
+			// add the edge to graph
+			this.graph_list[src].push(dest)
+			this.graph_matrix[src][dest] = 1
+		}
+	}
+
+	// function to print adj list
+	print_graph_list() {
+		console.log('Adjacency List Representation:' + '<br>')
+		for (let i = 0; i < this.v; i++) {
+			console.log(i, '-->', ...this.graph_list[i])
+		}
+		console.log('<br>')
+	}
+
+	// function to print adj matrix
+	print_graph_matrix() {
+		console.log('Adjacency Matrix Representation:' + '<br>')
+		for (let i = 0; i < this.graph_matrix.length; i++) {
+			console.log(this.graph_matrix[i])
+		}
+		console.log('<br>')
+	}
+
+	// function the get number of edges
+	number_of_edges() {
+		return this.e
+	}
+
+	// function for dfs
+	dfs() {
+		this.visited = Array.from({ length: this.v }, () => false)
+		this.start_time = Array.from({ length: this.v }, () => 0)
+		this.end_time = Array.from({ length: this.v }, () => 0)
+
+		for (let node = 0; node < this.v; node++) {
+			if (!this.visited[node]) {
+				this.traverse_dfs(node)
+			}
+		}
+		console.log()
+		console.log('DFS Traversal: ', this.traversal_array + '<br>')
+		console.log()
+	}
+
+	// function to traverse the graph using DFS
+	traverse_dfs(node) {
+		// mark the node as visited
+		this.visited[node] = true
+
+		// add the node to the traversal array
+		this.traversal_array.push(node)
+
+		// get the starting time for the node
+		this.start_time[node] = this.time
+
+		// increment the time by 1
+		this.time += 1
+
+		// loop through the neighbours of the node
+		for (let i = 0; i < this.graph_list[node].length; i++) {
+			let neighbour = this.graph_list[node][i]
+
+			// if the neighbour node is not visited
+			if (!this.visited[neighbour]) {
+				// mark the edge as a tree edge
+				console.log('Tree Edge: ' + node.from + '-->' + neighbour.from + '<br>')
+
+				// traverse through the neighbour node
+				this.traverse_dfs(neighbour)
+			} else {
+				// if parent node is traversed after the neighbour node
+				if (
+					this.start_time[node] > this.start_time[neighbour] &&
+					this.end_time[node] < this.end_time[neighbour]
+				) {
+					console.log('Back Edge: ' + node + '-->' + neighbour + '<br>')
+				}
+
+				// if the neighbour node is a  but not a part of the tree
+				else if (
+					this.start_time[node] < this.start_time[neighbour] &&
+					this.end_time[node] > this.end_time[neighbour]
+				) {
+					console.log('Forward Edge: ' + node + '-->' + neighbour + '<br>')
+				}
+
+				// if parent and neighbour node do not
+				// have any ancestor and descendant relationship between them
+				else if (
+					this.start_time[node] > this.start_time[neighbour] &&
+					this.end_time[node] > this.end_time[neighbour]
+				) {
+					console.log('Cross Edge: ' + node + '-->' + neighbour + '<br>')
+				}
+			}
+		}
+
+		// get the ending time for the node
+		this.end_time[node] = this.time
+
+		// increment the time by 1
+		this.time += 1
+	}
+}
+
+// main
+const n = 10
+const g = new Graph(n)
+g.create_random_graph()
+g.print_graph_list()
+g.print_graph_matrix()
+g.dfs()

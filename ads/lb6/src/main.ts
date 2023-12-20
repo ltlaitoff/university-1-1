@@ -822,14 +822,13 @@ class App {
 		// console.log('DFS:', jungle.map(item => item.value).join(', 	'))
 	}
 
+	/* LB 6 ADS 1 */
 	async initHashTables(
 		start: Node,
-		graph: Map<GraphValue, Node>,
 		unprocessedNodes: Set<Node>,
 		timeToNodes: Map<Node, number>
 	) {
-		for (const item of graph) {
-			const node = item[1]
+		for (const node of this.graph.graph.values()) {
 			unprocessedNodes.add(node)
 			timeToNodes.set(node, Infinity)
 		}
@@ -863,7 +862,6 @@ class App {
 	) {
 		while (unprocessedNodes.size > 0) {
 			const node = await this.getNodeWithMinTime(unprocessedNodes, timeToNodes)
-			console.log(node)
 
 			if (!node) return
 			if (timeToNodes.get(node) === Infinity) return
@@ -884,10 +882,10 @@ class App {
 					const nodeTime = timeToNodes.get(node)
 					if (nodeTime === undefined) continue
 
-					const timeToCheck = nodeTime + edge.weight
-
 					const adjacentNodeTime = timeToNodes.get(adjacentNode)
 					if (adjacentNodeTime === undefined) continue
+
+					const timeToCheck = nodeTime + edge.weight
 
 					if (timeToCheck < adjacentNodeTime) {
 						timeToNodes.set(adjacentNode, timeToCheck)
@@ -911,17 +909,14 @@ class App {
 			const minTimeToNode = timeToNodes.get(node)
 			path.unshift(node)
 
-			for (const parentAndEdge of node.parents.entries()) {
-				const parent = parentAndEdge[0]
-				const parentEdge = parentAndEdge[1]
+			for (const [parent, parentEdge] of node.parents.entries()) {
+				if (timeToNodes.has(parent) === undefined) continue
 
-				if (!timeToNodes.has(parent)) continue
-
-				const prevNodeFound =
+				const previousNodeFound =
 					Number(parentEdge.weight + (timeToNodes.get(parent) ?? 0)) ===
 					minTimeToNode
 
-				if (prevNodeFound) {
+				if (previousNodeFound) {
 					timeToNodes.delete(node)
 					node = parent
 					break
@@ -937,20 +932,10 @@ class App {
 		const unprocessedNodes = new Set<Node>()
 		const timeToNodes = new Map<Node, number>()
 
-		await this.initHashTables(
-			start,
-			this.graph.graph,
-			unprocessedNodes,
-			timeToNodes
-		)
-
+		await this.initHashTables(start, unprocessedNodes, timeToNodes)
 		await this.calculateTimeToEachNode(unprocessedNodes, timeToNodes)
-		console.log('%c⧭', 'color: #d90000', unprocessedNodes)
-		console.log('%c⧭', 'color: #ffa640', timeToNodes)
-		console.log(timeToNodes.get(end))
 
 		if (timeToNodes.get(end) === Infinity) return null
-
 		return await this.getShortestPath(start, end, timeToNodes)
 	}
 
@@ -966,7 +951,11 @@ class App {
 		distances.set(startNode, 0)
 
 		for (let i = 0; i < this.graph.graph.size; i++) {
-			for (const currentNode of this.graph.graph.values()) {
+			for (const currentNode of [...this.graph.graph.values()]) {
+				if (currentNode === startNode) {
+					continue
+				}
+
 				for (const edge of currentNode.edges) {
 					if (
 						this.graph.mode === 'directed' &&
@@ -1007,16 +996,13 @@ class App {
 		return distances
 	}
 
-	floydWarshall() {
-		const nodes = Array.from(this.graph.graph.values())
+	floydWarshall(nodes: Node[]) {
 		const numNodes = nodes.length
 
-		// Initialize the distance matrix with Infinity
-		const distances: number[][] = Array.from({ length: numNodes }, () =>
+		const distances = Array.from({ length: numNodes }, () =>
 			Array(numNodes).fill(Infinity)
 		)
 
-		// Initialize the distance matrix with actual edge weights
 		nodes.forEach((node, i) => {
 			distances[i][i] = 0
 
@@ -1031,12 +1017,11 @@ class App {
 			})
 		})
 
-		// Floyd-Warshall algorithm
-		for (let k = 0; k < numNodes; k++) {
-			for (let i = 0; i < numNodes; i++) {
-				for (let j = 0; j < numNodes; j++) {
-					if (distances[i][k] + distances[k][j] < distances[i][j]) {
-						distances[i][j] = distances[i][k] + distances[k][j]
+		for (let i = 0; i < numNodes; i++) {
+			for (let j = 0; j < numNodes; j++) {
+				for (let k = 0; k < numNodes; k++) {
+					if (distances[j][i] + distances[i][k] < distances[j][k]) {
+						distances[j][k] = distances[j][i] + distances[i][k]
 					}
 				}
 			}
@@ -1607,6 +1592,7 @@ class App {
 		const panel = document.querySelector('#panel')
 		const form = document.querySelector('#form')
 		const formHeading = document.querySelector('.panel__form-heading')
+		const formCodeOutput = document.querySelector('#form-code-output')
 
 		mainMenu?.addEventListener('click', async e => {
 			if (!(e.target as HTMLElement).className.includes('menu__link')) return
@@ -1743,6 +1729,8 @@ class App {
 		form?.addEventListener('submit', async e => {
 			e.preventDefault()
 
+			formCodeOutput.textContent = ''
+
 			const start = document.querySelector('#panel__form--from')
 			const to = document.querySelector('#panel__form--to')
 
@@ -1818,14 +1806,17 @@ class App {
 				const distances = await this.bellmanFord(startNode)
 
 				if (distances) {
-					console.log(
-						[...distances.entries()].reduce((acc, [node, distance]) => {
+					const result = [...distances.entries()].reduce(
+						(acc, [node, distance]) => {
 							return {
 								...acc,
 								[node.value]: distance
 							}
-						}, {})
+						},
+						{}
 					)
+
+					formCodeOutput.textContent = JSON.stringify(result, null, 2)
 				} else {
 					console.log('Paths not found')
 				}
@@ -1840,13 +1831,15 @@ class App {
 				startNode.status = 'done'
 				endNode.status = 'done'
 
-				console.log(await this.dijkstra(startNode, endNode))
-				// .then(async () => {
-				// 	console.log('asdsd')
-				// 	// await sleep(DELAY)
+				const result = await this.dijkstra(startNode, endNode)
 
-				// 	this.#graphNodesStatusResetter(activeId)
-				// })
+				if (result === null) {
+					formCodeOutput.textContent = 'Not found!'
+				} else {
+					formCodeOutput.textContent = result
+						?.map(item => item.value)
+						.join(' -> ')
+				}
 			}
 
 			if (algorithm === 'lb6three') {
@@ -1855,7 +1848,45 @@ class App {
 
 				this.#graphNodesStatusResetter(activeId)
 
-				console.log(await this.floydWarshall(this.graph))
+				const nodes = Array.from(this.graph.graph.values()).sort((a, b) => {
+					return Number(a.value) - Number(b.value)
+				})
+				console.log('%c⧭', 'color: #731d1d', nodes)
+
+				const result = await this.floydWarshall(nodes)
+
+				result.unshift([])
+				result.unshift(nodes.map(node => node.value))
+
+				formCodeOutput.textContent = JSON.stringify(
+					[
+						...result.map(item => {
+							const tmp: string[] = []
+
+							item.map(subItem => {
+								let s = String(subItem)
+
+								if (subItem === Infinity) {
+									s = '-'
+								}
+
+								if (s.length < 2) {
+									s = ' ' + s
+								}
+
+								if (s.length < 3 && s.length === 2) {
+									s = ' ' + s
+								}
+
+								tmp.push(s)
+							})
+
+							return tmp.join(',')
+						})
+					],
+					null,
+					2
+				)
 				// .then(async () => {
 				// 	console.log('asdsd')
 				// 	// await sleep(DELAY)

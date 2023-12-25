@@ -1,7 +1,28 @@
+/*
+2.3 Для реалізації вкладки «Пірамідальне сортування»
+розв’язати індивідуальне завдання за допомогою пірамідального
+сортування, яке повинно забезпечуватися за допомогою:
+– програмного модуля, що містить клас, який реалізує купу і має
+дозволяти виконувати наступні операції на основі окремих методів:
+вставлення елементу, сортування елементів, побудова купи з
+невпорядкованого масиву, видалення елементу, сортування елементів
+із використанням купи;
+
+– програмного модуля, який реалізує графічний інтерфейс
+відповідної вкладки і дозволяє 
+
+додавати нові елементи до купи на основі полів, що відповідають індивідуальному завданню, 
+та на основі підключення файлів з масивами даних, 
+вилучати існуючі елементи, 
+виконувати пірамідальне сортування та два інші алгоритми сортування, визначені індивідуальним завданням, 
+з виведенням результатів наочним способом (отриманого порядку елементів та часу, витраченого на сортування).
+*/
+
 import { HeapSort } from './HeapSort'
 // import { DoublyLinkedList } from './doubly-linked-list'
 import Heap from './heap'
 import { Book } from './Book'
+import { randomGenerateBook } from './randomGenerate'
 
 // const list = new DoublyLinkedList<number>(1)
 
@@ -118,11 +139,21 @@ const books = [
 const heapBook = new Heap<Book>().fromArray(books)
 
 const bookToString = (value: Book, index?: number) => {
-	return `${index !== undefined ? index + ' | ' : ''}${value.author} ${
-		value.title
-	}: ${value.totalCopies - value.copiesCheckedOut} | ${
-		value.copiesCheckedOut
-	}/${value.totalCopies}`
+	//  <div class="heap__item heap__item--index">${index ?? ''}</div>
+
+	return `<div class="heap">
+			<div class="heap__item heap__item--author">${value.author}</div>
+			<div class="heap__item heap__item--title">${value.title}</div>
+			<div class="heap__item heap__item--wrapper">
+			<div class="heap__item--total">${value.totalCopies}</div>
+			<div class="heap__item--other">-</div>
+			<div class="heap__item--checked-out">${value.copiesCheckedOut}</div>
+				<div class="heap__item--other">=</div>
+				<div class="heap__item--avalible">${
+					value.totalCopies - value.copiesCheckedOut
+				}</div>
+			</div>
+		</div>`
 }
 
 /*
@@ -134,141 +165,171 @@ const bookToString = (value: Book, index?: number) => {
 сортування, визначені індивідуальним завданням, з виведенням
 результатів наочним способом (отриманого порядку елементів та часу,
 витраченого на сортування).
+
+Індивідуальне завдання:
+
+Варіант No 8
+Книжки в бібліотеці характеризуються наступними даними:
+– автор;
+– назва;
+– жанр;
+– видавництво;
+– рік публікації;
+– кількість сторінок;
+– загальна кількість екземплярів;
+– кількість екземплярів у читачів.
+
+Визначити книжки, кількість наявних екземплярів яких у
+бібліотеці в поточний момент входить у перші 50 %. Обчислити
+сумарну кількість наявних екземплярів таких книжок.
+
+Invididual task result:
+...items...
+
+Summ: 
 */
 
 function renderHeap() {
-	heapOutput.textContent = heapBook.getPrint(bookToString)
-
-	console.log(heapBook.getPrint(bookToString))
+	try {
+		heapOutput.innerHTML = heapBook.getPrint(bookToString)
+	} catch (error) {
+		heapOutput.innerHTML = ''
+	}
 }
 
-function removeTop() {
+function extractTop() {
 	const el = heapBook.extractTop()
 
-	alert(JSON.stringify(el))
+	if (el) {
+		extractedContent.innerHTML = `<div class="heap">
+			<div class="heap__item heap__item--author">${el.author}</div>
+			<div class="heap__item heap__item--title">${el.title}</div>
+			<div class="heap__item heap__item--wrapper">
+				<div class="heap__item--checked-out">${el.copiesCheckedOut}</div>
+				<div class="heap__item--other">/</div>
+				<div class="heap__item--total">${el.totalCopies}</div>
+				<div class="heap__item--other">=</div>
+				<div class="heap__item--avalible">${el.totalCopies - el.copiesCheckedOut}</div>
+			</div>
+		</div>`
+	} else {
+		extractedContent.innerHTML = ''
+	}
+
 	renderHeap()
-	// heapOutputTopElement.textContent = el
 }
 
-function addElement() {
-	const NAMES = [
-		'Bartell - Harris',
-		'Schoen Inc',
-		'Labadie - Rodriguez',
-		'Weimann LLC',
-		'Veum - Tillman',
-		'Willms Inc',
-		'Heller, Deckow and Funk',
-		'Buckridge, Gutmann and Gaylord',
-		'Boehm and Sons',
-		'Rempel - Bruen',
-		'Boyer, Wisoky and Altenwerth',
-		'Steuber, Kovacek and Huels',
-		'Ruecker, Jacobs and Daniel',
-		'Abbott, Gutkowski and Waelchi',
-		'Cartwright - Kuhlman',
-		'Maggio - Zboncak',
-		'Waelchi Group',
-		'Hilll - Bode',
-		'Marks - Stroman'
-	]
+function addRandomElement() {
+	heapBook.add(randomGenerateBook())
+	renderHeap()
+}
 
-	const TITLES = [
-		'Virtual non-volatile toolset',
-		'Cloned neutral functionalities',
-		'Digitized cohesive flexibility',
-		'Face to face systemic utilisation',
-		'Operative real-time application',
-		'Vision-oriented intermediate collaboration',
-		'Versatile modular circuit',
-		'Switchable fault-tolerant conglomeration',
-		'Implemented methodical matrices',
-		'Open-architected bi-directional data-warehouse',
-		'Inverse intangible conglomeration',
-		'Sharable intangible migration',
-		'Re-contextualized system-worthy adapter',
-		'Diverse upward-trending core',
-		'Streamlined well-modulated framework',
-		'Devolved background standardization',
-		'Advanced content-based time-frame',
-		'Cross-platform local groupware',
-		'User-centric foreground middleware'
-	]
-
-	const GENRE = [
-		'motivating',
-		'system-worthy',
-		'maximized',
-		'client-server',
-		'systematic',
-		'fresh-thinking',
-		'bi-directional',
-		'multimedia',
-		'global',
-		'tertiary',
-		'didactic',
-		'leading edge',
-		'client-driven',
-		'empowering',
-		'discrete',
-		'user-facing',
-		'non-volatile',
-		'actuating',
-		'impactful'
-	]
+function addElementFromForm(e: Event) {
+	e.preventDefault()
 
 	heapBook.add(
 		new Book(
-			NAMES[Math.floor(Math.random() * NAMES.length)],
-			TITLES[Math.floor(Math.random() * TITLES.length)],
-			GENRE[Math.floor(Math.random() * GENRE.length)],
-			'SITE.com',
-			Math.abs(Math.floor(Math.random() * 5000)),
-			Math.abs(Math.floor(Math.random() * 1000)),
-			Math.abs(Math.floor(Math.random() * 50)),
-			Math.abs(Math.floor(Math.random() * 50))
+			formAddAuthor.value,
+			formAddTitle.value,
+			formAddGenre.value,
+			formAddPublisher.value,
+			Number(formAddPublicationYear.value),
+			Number(formAddPageCount.value),
+			Number(formAddTotalCopies.value),
+			Number(formAddCopiesCheckedOut.value)
 		)
 	)
 
 	renderHeap()
 }
 
-function sort() {
+function heapSort() {
 	const heapSort = new HeapSort<Book>(heapBook)
 
-	const a = heapSort.getSorted()
+	const sorted = heapSort.getSorted()
 
 	let summ = 0
 	const message = [
 		'Визначити книжки, кількість наявних екземплярів яких у бібліотеці в поточний момент входить у перші 50 %:\n'
 	]
 
-	a.slice(0, a.length / 2).map(item => {
-		// Визначити книжки, кількість наявних екземплярів яких у бібліотеці в поточний момент входить у перші 50 %.
-		message.push(bookToString(item))
+	sorted
+		.toReversed()
+		.slice(0, sorted.length / 2)
+		.map(item => {
+			message.push(bookToString(item))
 
-		summ += Number(item)
-	})
+			summ += Number(item)
+		})
 
-	// Обчислити сумарну кількість наявних екземплярів таких книжок.
 	message.push('\nSumm: ' + summ)
 
-	alert(message.join('\n'))
+	heapSortContent.innerHTML = message.join('\n')
 }
 
-const heapOutput = document.querySelector('#output')
-const heapOutputTopElement = document.querySelector('#output-element')
+const heapOutput = document.querySelector('#output') as HTMLElement
+const extractedContent = document.querySelector(
+	'#extracted__content'
+) as HTMLElement
+const extractTopButton = document.querySelector('#extract-top') as HTMLElement
+const heapSortButton = document.querySelector('#heap-sort') as HTMLElement
+const addRandomElementButton = document.querySelector(
+	'#add-random-element'
+) as HTMLElement
 
-document.querySelector('#extract-top')?.addEventListener('click', () => {
-	removeTop()
-})
+const heapSortContent = document.querySelector(
+	'#heap-sort__content'
+) as HTMLElement
 
-document.querySelector('#add-element')?.addEventListener('click', () => {
-	addElement()
-})
+const addElementButton = document.querySelector('#add') as HTMLElement
+const addForm = document.querySelector('#add-form') as HTMLFormElement
 
-document.querySelector('#sort')?.addEventListener('click', () => {
-	sort()
-})
+const formAddAuthor = document.querySelector(
+	'#form-add-author'
+) as HTMLInputElement
+const formAddTitle = document.querySelector(
+	'#form-add-title'
+) as HTMLInputElement
+const formAddGenre = document.querySelector(
+	'#form-add-genre'
+) as HTMLInputElement
+const formAddPublisher = document.querySelector(
+	'#form-add-publisher'
+) as HTMLInputElement
+const formAddPublicationYear = document.querySelector(
+	'#form-add-publicationYear'
+) as HTMLInputElement
+const formAddPageCount = document.querySelector(
+	'#form-add-pageCount'
+) as HTMLInputElement
+const formAddTotalCopies = document.querySelector(
+	'#form-add-totalCopies'
+) as HTMLInputElement
+const formAddCopiesCheckedOut = document.querySelector(
+	'#form-add-copiesCheckedOut'
+) as HTMLInputElement
+
+function toggleAddForm() {
+	if (addForm.classList.contains('add-form--hide')) {
+		formAddAuthor.value = ''
+		formAddTitle.value = ''
+		formAddGenre.value = ''
+		formAddPublisher.value = ''
+		formAddPublicationYear.value = ''
+		formAddPageCount.value = ''
+		formAddTotalCopies.value = ''
+		formAddCopiesCheckedOut.value = ''
+		addForm.classList.remove('add-form--hide')
+		return
+	}
+
+	addForm.classList.add('add-form--hide')
+}
+
+extractTopButton.addEventListener('click', extractTop)
+addRandomElementButton.addEventListener('click', addRandomElement)
+heapSortButton.addEventListener('click', heapSort)
+addElementButton.addEventListener('click', toggleAddForm)
+addForm.addEventListener('submit', addElementFromForm)
 
 renderHeap()

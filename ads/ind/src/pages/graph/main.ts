@@ -1,4 +1,3 @@
-import './style.css'
 import { Graph, GraphValue } from '../../models/Graph'
 import { Edge } from '../../models/Edge'
 import { Node } from '../../models/Node'

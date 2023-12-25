@@ -1,0 +1,43 @@
+@import '../../style/tailwind.css';
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+}
+
+#app {
+	padding: 10px;
+}
+
+.button {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 10px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.input {
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+
+#haffman-encoded {
+	word-break: break-all;
+}
+
+#haffman-tree {
+	word-break: break-all;
+}
+
+#haffman-decoded {
+	word-break: break-all;
+}

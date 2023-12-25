@@ -2,6 +2,15 @@ import AVLTree from './AVLTree.class'
 import HashTable from './HashTable.class'
 import { logTree } from './helper/logTree'
 
+/*
+– програмного модуля, що реалізує графічний інтерфейс
+відповідної вкладки і дозволяє виконувати формування геш-таблиці та
+B-дерева, додавання і видалення елементів, пошук, оброблення
+результатів, виведення їх у відповідні поля для виконання
+індивідуального завдання, при цьому розв’язуючи одне з завдань за
+допомогою обох структур даних.
+*/
+
 console.log('Var 8 => Task 1 В)')
 /*
 В. Створити геш-таблицю, що використовує метод ланцюжків
@@ -43,24 +52,37 @@ const hashAdd = document.querySelector('#hash-add')
 
 const hashTable = new HashTable()
 
-hashData.map(([name, job], index) => {
-	hashTable.addOrUpdate(`${index} - ${name}`, job)
+hashData.map(([name, job]) => {
+	hashTable.addOrUpdate(name, transformDataToHTML([name, job], false))
 })
 
+function transformDataToHTML(data: string[], withWrapper = true) {
+	const name = `<div class="hash__item hash__item--name">${data[0]}</div>`
+	const job = `<div class="hash__item hash__item--job">${data[1]}</div>`
+
+	if (withWrapper) return `<div class="hash">${name}${job}</div>`
+	return `${name}${job}`
+}
+
 function renderData() {
-	hashTableOutput.textContent = JSON.stringify(
-		hashData.map((item, index) => `${item[0]}: ${item[1]}`),
-		null,
-		2
-	)
+	hashTableOutput.innerHTML = hashData
+		.map(item => transformDataToHTML(item))
+		.join('\n')
 }
 
 function renderHash() {
-	hashOutput.textContent = JSON.stringify(
-		hashTable.show().map(item => `${item.index} | ${item.value}`),
-		null,
-		2
-	)
+	hashOutput.innerHTML = hashTable
+		.show()
+		.map(item => {
+			if (!item) return ''
+
+			return `<div class="hash">
+				<div class="hash__item hash__item--index">${item.index}</div>
+				<div class="hash__item hash__item--other">|</div>
+				${item.value}
+			</div>`
+		})
+		.join('')
 }
 
 /*
@@ -131,7 +153,7 @@ function addHash() {
 
 	hashData.push(data)
 
-	hashTable.addOrUpdate(data[0], data[1])
+	hashTable.addOrUpdate(data[0], transformDataToHTML(data, false))
 
 	renderHash()
 	renderData()

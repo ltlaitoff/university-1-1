@@ -1,0 +1,131 @@
+@import '../../style/tailwind.css';
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+}
+
+#app {
+	padding: 10px;
+}
+
+.button {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 10px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+#output {
+	margin-top: 20px;
+}
+
+.heap {
+	display: inline-flex;
+
+	padding: 3px 0;
+	column-gap: 20px;
+
+	.heap__item {
+		padding: 5px 10px;
+		border-radius: 5px;
+	}
+
+	.heap__item--index {
+		background: var(--color-emerald-300);
+	}
+
+	.heap__item--author {
+		background: var(--color-amber-300);
+	}
+
+	.heap__item--title {
+		background: var(--color-rose-300);
+	}
+
+	.heap__item--wrapper {
+		display: flex;
+		column-gap: 5px;
+		background: var(--color-sky-300);
+	}
+}
+
+.extracted {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 1000px;
+
+	.extracted__title {
+		font-weight: 500;
+	}
+
+	.extracted__content {
+		display: inline-block;
+		padding: 5px 10px;
+		border-radius: 10px;
+		margin-top: 4px;
+		height: 35px;
+		background: var(--color-gray-100);
+	}
+}
+
+.relative {
+	position: relative;
+}
+
+.add-form {
+	position: absolute;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
+	top: 50px;
+	left: 30px;
+
+	background: white;
+	border-radius: 15px;
+	-webkit-box-shadow: 0px 0px 20px -11px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 20px -11px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 20px -11px rgba(0, 0, 0, 0.75);
+
+	&.add-form--hide {
+		display: none;
+	}
+
+	.add-form__label {
+		display: flex;
+		column-gap: 10px;
+		justify-content: space-between;
+	}
+
+	.add-form__button {
+		margin-top: 5px;
+		padding: 10px;
+		border-radius: 5px;
+		background: var(--color-emerald-200);
+		border: none;
+		cursor: pointer;
+
+		&:hover {
+			background: var(--color-emerald-300);
+		}
+	}
+
+	.add-form__input {
+		border-radius: 5px;
+		border: 1px solid gray;
+	}
+}
+
+.heap-sort__content {
+	display: flex;
+	flex-direction: column;
+}

@@ -19,5 +19,6 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
+	"exclude": ["node_modules", "dist", "docs", ".husky"],
 	"include": ["src"]
 }

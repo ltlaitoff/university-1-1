@@ -11,47 +11,67 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Vite + TS</title>
+		<title>IND ADS Greedy and huffman</title>
+		<link
+			rel="stylesheet"
+			href="./style.css"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div id="app">
-			<div class="">
+			<div class="greedy">
 				<h2>Water</h2>
 
 				<form id="water-form">
 					<input
+						class="input"
 						type="text"
 						id="water-barrel"
 						placeholder="barrel capacity"
 					/>
 					<input
+						class="input"
 						type="text"
 						id="water-buckets"
 						placeholder="buckets(by ',')"
 					/>
 
-					<button>Run</button>
+					<button class="button">Run</button>
 				</form>
 
 				<pre id="water-output"></pre>
 			</div>
 
-			<div class="">
+			<div class="haffman">
 				<h2>Haffman</h2>
 
 				<form id="haffman-form">
 					<input
+						class="input"
 						type="text"
 						id="haffman-input"
-						placeholder="barrel capacity"
+						placeholder="Input text"
 					/>
 
-					<button>Run</button>
+					<button class="button">Run</button>
 				</form>
 
-				<pre id="haffman-encoded"></pre>
+				<div id="haffman-encoded"></div>
 				<pre id="haffman-tree"></pre>
-				<pre id="haffman-decoded"></pre>
+				<div id="haffman-decoded"></d>
 			</div>
 
 			<pre id="output"></pre>

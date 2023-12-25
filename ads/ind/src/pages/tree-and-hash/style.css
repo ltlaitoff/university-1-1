@@ -1,0 +1,63 @@
+@import '../../style/tailwind.css';
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+}
+
+#app {
+	padding: 10px;
+}
+
+.button {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 10px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.hash {
+	display: inline-flex;
+	column-gap: 10px;
+
+	.hash__item {
+		border-radius: 5px;
+		padding: 5px 10px;
+	}
+
+	.hash__item--index {
+		background: var(--color-emerald-300);
+	}
+
+	.hash__item--name {
+		background: var(--color-red-300);
+	}
+
+	.hash__item--job {
+		background: var(--color-sky-300);
+	}
+
+	.hash__item--other {
+		background: var(--color-gray-300);
+	}
+}
+
+.hash__table,
+#hash-output {
+	margin-top: 5px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
+}
+
+.tree {
+	margin-top: 20px;
+}

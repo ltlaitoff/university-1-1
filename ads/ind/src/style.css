@@ -16,116 +16,43 @@ body,
 	min-height: 100vh;
 	width: 100%;
 	overflow: hidden;
-}
-
-.graph__wrapper {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
-
-.graph {
-	width: 100%;
-	/* min-height: 100vh; */
-	height: 100%;
-}
-
-/* Menu */
-
-.menu {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-
-	height: 50px;
-	background: var(--color-purple-50);
-	transform: translateX(-50%);
-	border-top-left-radius: 25px;
-	border-top-right-radius: 25px;
-	overflow: hidden;
-}
-
-.menu__nav {
-	height: 100%;
-	/* display: none; */
-}
-
-.menu__list {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-}
-
-.menu__item {
-	height: 100%;
-}
-
-.menu__link {
-	padding: 10px 15px;
 	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	background: var(--color-purple-200);
-	color: var(--color-purple-950);
-	border: none;
-	height: 100%;
-	cursor: pointer;
 }
 
-.menu__link--active {
-	background: var(--color-purple-300);
-}
+.nav {
+	padding: 20px 20px;
+	font-size: 2rem;
 
-/* Menu end */
+	.nav__list {
+		display: flex;
+		list-style-type: none;
+	}
 
-.panel {
-	position: absolute;
+	.nav__item--1 .nav__link:hover {
+		background: var(--color-rose-300);
+	}
 
-	right: -100%;
-	background: var(--color-purple-50);
+	.nav__item--2 .nav__link:hover {
+		background: var(--color-purple-300);
+	}
 
-	height: 100%;
-	padding: 20px 25px;
+	.nav__item--3 .nav__link:hover {
+		background: var(--color-sky-300);
+	}
 
-	box-shadow: -4px 0px 19px -1px rgba(135, 135, 135, 0.05);
-	-webkit-box-shadow: -4px 0px 19px -1px rgba(135, 135, 135, 0.05);
-	-moz-box-shadow: -4px 0px 19px -1px rgba(135, 135, 135, 0.05);
-}
+	.nav__item--4 .nav__link:hover {
+		background: var(--color-emerald-300);
+	}
 
-.panel--opened {
-	right: 0;
-}
+	.nav__item--5 .nav__link:hover {
+		background: var(--color-amber-300);
+	}
 
-.panel__form {
-	display: flex;
-	flex-direction: column;
-	row-gap: 15px;
-}
+	.nav__link {
+		padding: 10px 10px;
+		color: black;
+		border-radius: 5px;
 
-.panel__form-label {
-	display: flex;
-	justify-content: space-between;
-	column-gap: 10px;
-}
-
-.panel__form-input {
-	padding: 3px 6px;
-	border: 1px solid var(--color-slate-400);
-	border-radius: 10px;
-}
-
-.panel__form-button {
-	border-radius: 10px;
-	padding: 5px 10px;
-	border: none;
-	background: var(--color-green-300);
-	cursor: pointer;
-}
-
-.panel__form-button:hover {
-	background: var(--color-green-400);
-}
-
-.content--circle {
-	transition: 0.5s all;
+		transition: all 0.2s ease-out;
+	}
 }

@@ -11,13 +11,163 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Vite + TS</title>
+		<title>IND ADS Heap</title>
+		<link
+			rel="stylesheet"
+			href="./style.css"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div id="app">
-			<button id="extract-top">Extract top</button>
-			<button id="add-element">Add</button>
-			<button id="sort">Heap sort</button>
+			<div class="button__wrapper">
+				<button
+					class="button"
+					id="extract-top"
+				>
+					Extract top
+				</button>
+				<button
+					class="button"
+					id="add-random-element"
+				>
+					Add random
+				</button>
+				<button
+					class="button"
+					id="heap-sort"
+				>
+					Heap sort
+				</button>
+
+				<button
+					class="button"
+					id="add"
+				>
+					Add
+				</button>
+				<form
+					class="add-form add-form--hide"
+					id="add-form"
+					action=""
+				>
+					<label class="add-form__label">
+						Author:
+						<input
+							class="add-form__input"
+							id="form-add-author"
+							type="text"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Title:
+						<input
+							class="add-form__input"
+							id="form-add-title"
+							type="text"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Genre:
+						<input
+							class="add-form__input"
+							id="form-add-genre"
+							type="text"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Publisher:
+						<input
+							class="add-form__input"
+							id="form-add-publisher"
+							type="text"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Publication year:
+						<input
+							class="add-form__input"
+							id="form-add-publicationYear"
+							type="number"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Page count:
+						<input
+							class="add-form__input"
+							id="form-add-pageCount"
+							type="number"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Total copies:
+						<input
+							class="add-form__input"
+							id="form-add-totalCopies"
+							type="number"
+						/>
+					</label>
+
+					<label class="add-form__label">
+						Copies checked out:
+						<input
+							class="add-form__input"
+							id="form-add-copiesCheckedOut"
+							type="number"
+						/>
+					</label>
+
+					<button
+						type="submit"
+						class="add-form__button"
+					>
+						Submit
+					</button>
+				</form>
+			</div>
+
+			<div class="extracted">
+				<h2 class="extracted__title">Extracted top:</h2>
+				<div
+					class="extracted__content"
+					id="extracted__content"
+				></div>
+				<div
+					class="heap-sort__content"
+					id="heap-sort__content"
+				></div>
+			</div>
+
+			<div class="heap">
+				<div class="heap__item heap__item--index">Index</div>
+				<div class="heap__item heap__item--author">Author</div>
+				<div class="heap__item heap__item--title">Title</div>
+				<div class="heap__item heap__item--wrapper">
+					<div class="heap__item--total">Total</div>
+					<div class="heap__item--other">-</div>
+					<div class="heap__item--checked-out">Checked out</div>
+					<div class="heap__item--other">=</div>
+					<div class="heap__item--avalible">Avalible</div>
+				</div>
+			</div>
 
 			<pre id="output"></pre>
 		</div>

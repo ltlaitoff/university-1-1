@@ -11,20 +11,63 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Vite + TS</title>
+		<title>IND ABS Tree and Hash</title>
+		<link
+			rel="stylesheet"
+			href="./style.css"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div id="app">
 			<div class="">
 				<h2>Hash</h2>
-				<button id="hash-add">Add</button>
-				<pre id="hash-table"></pre>
+				<button
+					class="button"
+					id="hash-add"
+				>
+					Add
+				</button>
+
+				<div class="hash">
+					<div class="hash__item hash__item--index">Index</div>
+					<div class="hash__item hash__item--other">|</div>
+					<div class="hash__item hash__item--name">Name</div>
+					<div class="hash__item hash__item--job">Job</div>
+				</div>
+
+				<pre
+					class="hash__table"
+					id="hash-table"
+				></pre>
 				<pre id="hash-output"></pre>
 			</div>
 
-			<div class="">
-				<button id="tree-add">Add</button>
-				<button id="tree-delete">Delete some</button>
+			<div class="tree">
+				<button
+					class="button"
+					id="tree-add"
+				>
+					Add
+				</button>
+				<button
+					class="button"
+					id="tree-delete"
+				>
+					Delete some
+				</button>
 				<h2>AVL</h2>
 				<!-- <button id="tree-add">Add</button> -->
 				<!-- <pre id="hash-table"></pre> -->

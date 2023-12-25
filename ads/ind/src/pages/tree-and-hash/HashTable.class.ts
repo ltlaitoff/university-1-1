@@ -79,7 +79,7 @@ class List {
 	}
 
 	toString() {
-		return `${this.key}: ${this.value}`
+		return `${this.value}`
 	}
 }
 
@@ -141,7 +141,13 @@ class HashTable {
 	show() {
 		return this.values
 			.map((item, index) => {
-				if (item) return { index: index, value: item.getShow().join(' => ') }
+				if (item)
+					return {
+						index: index,
+						value: item
+							.getShow()
+							.join('<div class="hash__item hash__item--arrow">=></div>')
+					}
 			})
 			.filter(item => item != undefined)
 	}

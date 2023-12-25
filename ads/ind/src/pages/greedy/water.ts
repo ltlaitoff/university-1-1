@@ -30,7 +30,7 @@ class BringWater {
 	get result() {
 		let notFilledCapacity = this.barrelСapacity
 
-		const usedBuckets = {}
+		const usedBuckets: Record<number, number> = {}
 
 		if (this.buckets.length === 0) {
 			return 'Buckets must be!'

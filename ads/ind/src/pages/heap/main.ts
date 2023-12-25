@@ -182,11 +182,6 @@ const bookToString = (value: Book, index?: number) => {
 Визначити книжки, кількість наявних екземплярів яких у
 бібліотеці в поточний момент входить у перші 50 %. Обчислити
 сумарну кількість наявних екземплярів таких книжок.
-
-Invididual task result:
-...items...
-
-Summ: 
 */
 
 function renderHeap() {
